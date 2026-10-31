@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blinkit Clone</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            color: #222;
+            background-color: white;
+        }
+        
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        button {
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+        }
+        /* Header */
+        
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 18px 6%;
+            border-bottom: 1px solid #eeeeee;
+            background-color: white;
+        }
+        
+        .logo {
+            color: #e5b800;
+            font-size: 32px;
+            font-weight: bold;
+        }
+        
+        .delivery {
+            line-height: 1.5;
+        }
+        
+        .delivery strong {
+            display: block;
+            font-size: 16px;
+        }
+        
+        .delivery span {
+            color: #555555;
+            font-size: 13px;
+        }
+        
+        .search {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+            max-width: 550px;
+            padding: 13px;
+            border: 1px solid #dddddd;
+            border-radius: 8px;
+            background-color: #f7f7f7;
+        }
+        
+        .search input {
+            width: 100%;
+            border: none;
+            outline: none;
+            background: transparent;
+            font-size: 14px;
+        }
+        
+        .login {
+            padding: 10px;
+            border: none;
+            background: transparent;
+            font-size: 15px;
+        }
+        
+        .cart {
+            padding: 12px 16px;
+            border: none;
+            border-radius: 8px;
+            background-color: #0c831f;
+            color: white;
+            font-weight: bold;
+        }
+        /* Navigation */
+        
+        .navigation {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            width: 88%;
+            margin: 22px auto;
+        }
+        
+        .navigation a {
+            padding: 10px 14px;
+            border-radius: 20px;
+            background-color: #f7f7f7;
+            font-size: 13px;
+        }
+        
+        .navigation a:hover {
+            background-color: #fff2c4;
+        }
+        /* Main content */
+        
+        .container {
+            width: 88%;
+            margin: 28px auto;
+        }
+        
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+            padding: 35px 5%;
+            border-radius: 15px;
+            background-color: #fff4cc;
+        }
+        
+        .hero-text {
+            max-width: 520px;
+        }
+        
+        .hero h1 {
+            margin-bottom: 12px;
+            font-size: 38px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            margin-bottom: 20px;
+            color: #555555;
+            font-size: 16px;
+        }
+        
+        .shop-button {
+            padding: 12px 18px;
+            border: none;
+            border-radius: 8px;
+            background-color: #0c831f;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .hero img {
+            width: 280px;
+            height: 190px;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+        /* Sections */
+        
+        .section {
+            margin: 38px 0;
+        }
+        
+        .section-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+        .section-heading h2 {
+            font-size: 24px;
+        }
+        
+        .see-all {
+            color: #0c831f;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        /* Categories */
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 18px;
+        }
+        
+        .category-card {
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .category-card:hover {
+            background-color: #f8f8f8;
+        }
+        
+        .category-card img {
+            width: 100%;
+            height: 120px;
+            margin-bottom: 10px;
+            object-fit: contain;
+        }
+        
+        .category-card p {
+            font-size: 14px;
+        }
+        /* Offer banners */
+        
+        .offer-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+        
+        .offer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            min-height: 150px;
+            padding: 20px;
+            border-radius: 12px;
+        }
+        
+        .offer h3 {
+            margin-bottom: 8px;
+            font-size: 19px;
+        }
+        
+        .offer p {
+            margin-bottom: 12px;
+            color: #555555;
+            font-size: 13px;
+        }
+        
+        .offer a {
+            color: #0c831f;
+            font-size: 13px;
+            font-weight: bold;
+        }
+        
+        .offer img {
+            width: 85px;
+            height: 85px;
+            object-fit: contain;
+        }
+        
+        .offer-one {
+            background-color: #e8f5e9;
+        }
+        
+        .offer-two {
+            background-color: #fff1d5;
+        }
+        
+        .offer-three {
+            background-color: #fce8e6;
+        }
+        /* Products */
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+        }
+        
+        .product-card {
+            padding: 12px;
+            border: 1px solid #eeeeee;
+            border-radius: 12px;
+        }
+        
+        .product-card img {
+            width: 100%;
+            height: 130px;
+            margin-bottom: 10px;
+            object-fit: contain;
+        }
+        
+        .delivery-time {
+            display: inline-block;
+            margin-bottom: 8px;
+            padding: 4px 6px;
+            border-radius: 4px;
+            background-color: #f4f4f4;
+            font-size: 10px;
+        }
+        
+        .product-card h3 {
+            min-height: 38px;
+            margin-bottom: 5px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        
+        .quantity {
+            margin-bottom: 12px;
+            color: #777777;
+            font-size: 12px;
+        }
+        
+        .product-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 5px;
+        }
+        
+        .price {
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .add-button {
+            padding: 7px 13px;
+            border: 1px solid #0c831f;
+            border-radius: 6px;
+            background-color: #f4fff5;
+            color: #0c831f;
+            font-weight: bold;
+        }
+        /* Footer */
+        
+        footer {
+            margin-top: 45px;
+            padding: 38px 6%;
+            border-top: 1px solid #eeeeee;
+            background-color: #f8f8f8;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+        
+        .footer-column a {
+            display: block;
+            margin: 8px 0;
+            color: #666666;
+            font-size: 13px;
+        }
+        
+        .footer-note {
+            margin-top: 25px;
+            padding-top: 18px;
+            border-top: 1px solid #dddddd;
+            color: #777777;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+        /* Mobile layout */
+        
+        @media (max-width: 900px) {
+            header {
+                flex-wrap: wrap;
+            }
+            .search {
+                order: 5;
+                max-width: none;
+                flex-basis: 100%;
+            }
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .category-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .container,
+            .navigation {
+                width: 92%;
+            }
+            .hero {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 25px;
+            }
+            .hero h1 {
+                font-size: 29px;
+            }
+            .hero img {
+                width: 100%;
+                height: 170px;
+            }
+            .offer-grid {
+                grid-template-columns: 1fr;
+            }
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .footer-content {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .section-heading h2 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <a href="#" class="logo">blinkit</a>
+
+        <div class="delivery">
+            <strong>Delivery in 10 minutes</strong>
+            <span>Meerut, Uttar Pradesh &#9662;</span>
+        </div>
+
+        <div class="search">
+            <span>&#128269;</span>
+            <input type="text" placeholder="Search for atta, dal, coke and more">
+        </div>
+
+        <button class="login">&#128100; Login</button>
+        <button class="cart">&#128722; My Cart</button>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="navigation">
+        <a href="#">&#128722; All</a>
+        <a href="#">&#129 vegetables; Vegetables &amp; Fruits</a>
+        <a href="#">&#129 दूध; Dairy &amp; Breakfast</a>
+        <a href="#">&#127839; Snacks</a>
+        <a href="#">&#129380; Cold Drinks</a>
+        <a href="#">&#129 cleaning; Cleaning</a>
+        <a href="#">&#129532; Personal Care</a>
+    </nav>
+
+    <main class="container">
+
+        <!-- Main banner -->
+        <section class="hero">
+            <div class="hero-text">
+                <h1>Groceries delivered<br>in minutes!</h1>
+                <p>Fresh fruits, vegetables, snacks and daily essentials at your doorstep.</p>
+                <button class="shop-button">Shop Now &#8594;</button>
+            </div>
+
+            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80" alt="Fresh vegetables">
+        </section>
+
+        <!-- Categories -->
+        <section class="section">
+            <div class="section-heading">
+                <h2>Shop by category</h2>
+                <a href="#" class="see-all">See all</a>
+            </div>
+
+            <div class="category-grid">
+                <a href="#" class="category-card">
+                    <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=300&q=80" alt="Vegetables and fruits">
+                    <p>Vegetables &amp; Fruits</p>
+                </a>
+
+                <a href="#" class="category-card">
+                    <img src="https://images.unsplash.com/photo-1563636619-e9143da7973b?auto=format&fit=crop&w=300&q=80" alt="Milk">
+                    <p>Dairy, Bread &amp; Eggs</p>
+                </a>
+
+                <a href="#" class="category-card">
+                    <img src="snacks.jpg">
+                    <p>Snacks &amp; Munchies</p>
+                </a>
+
+                <a href="#" class="category-card">
+                    <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=300&q=80" alt="Cold drinks">
+                    <p>Cold Drinks &amp; Juices</p>
+                </a>
+
+                <a href="#" class="category-card">
+                    <img src="https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=300&q=80" alt="Grocery items">
+                    <p>Breakfast &amp; Instant Food</p>
+                </a>
+
+                <a href="#" class="category-card">
+                    <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=300&q=80" alt="Personal care products">
+                    <p>Personal Care</p>
+                </a>
+
+                <a href="#" class="category-card">
+                    <img src="https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=300&q=80" alt="Home essentials">
+                    <p>Home &amp; Cleaning</p>
+                </a>
+
+                <a href="#" class="category-card">
+                    <img src="https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=300&q=80" alt="Beverages">
+                    <p>Water &amp; Beverages</p>
+                </a>
+
+                <a href="#" class="category-card">
+                    <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=300&q=80" alt="Kitchen items">
+                    <p>Kitchen Essentials</p>
+                </a>
+
+                <a href="#" class="category-card">
+                    <img src="https://images.unsplash.com/photo-1607082349566-187342175e2f?auto=format&fit=crop&w=300&q=80" alt="Shopping items">
+                    <p>Gifts &amp; Stationery</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- Offers -->
+        <section class="section">
+            <div class="section-heading">
+                <h2>Offers for you</h2>
+            </div>
+
+            <div class="offer-grid">
+                <div class="offer offer-one">
+                    <div>
+                        <h3>Fresh &amp; Healthy</h3>
+                        <p>Everyday fruits and vegetables</p>
+                        <a href="#">SHOP NOW &#8594;</a>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=250&q=80" alt="Fresh fruits">
+                </div>
+
+                <div class="offer offer-two">
+                    <div>
+                        <h3>Snack Time!</h3>
+                        <p>Chips, biscuits and more</p>
+                        <a href="#">EXPLORE &#8594;</a>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=250&q=80" alt="Cookies">
+                </div>
+
+                <div class="offer offer-three">
+                    <div>
+                        <h3>Daily Essentials</h3>
+                        <p>Everything for your home</p>
+                        <a href="#">SHOP NOW &#8594;</a>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1603905179139-d6c4b7b6e9d4?auto=format&fit=crop&w=250&q=80" alt="Home essentials">
+                </div>
+            </div>
+        </section>
+
+        <!-- Dairy products -->
+        <section class="section">
+            <div class="section-heading">
+                <h2>Dairy, Bread &amp; Eggs</h2>
+                <a href="#" class="see-all">See all</a>
+            </div>
+
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1563636619-e9143da7973b?auto=format&fit=crop&w=350&q=80" alt="Milk">
+                    <span class="delivery-time">10 MINS</span>
+                    <h3>Fresh Toned Milk</h3>
+                    <p class="quantity">500 ml</p>
+                    <div class="product-bottom"><span class="price">₹30</span><button class="add-button">ADD</button></div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=350&q=80" alt="Bread">
+                    <span class="delivery-time">10 MINS</span>
+                    <h3>White Bread</h3>
+                    <p class="quantity">400 g</p>
+                    <div class="product-bottom"><span class="price">₹40</span><button class="add-button">ADD</button></div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1518569656558-1f25e69d93d7?auto=format&fit=crop&w=350&q=80" alt="Eggs">
+                    <span class="delivery-time">10 MINS</span>
+                    <h3>Farm Fresh Eggs</h3>
+                    <p class="quantity">6 pieces</p>
+                    <div class="product-bottom"><span class="price">₹48</span><button class="add-button">ADD</button></div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=350&q=80" alt="Cheese">
+                    <span class="delivery-time">10 MINS</span>
+                    <h3>Cheese Slices</h3>
+                    <p class="quantity">10 slices</p>
+                    <div class="product-bottom"><span class="price">₹99</span><button class="add-button">ADD</button></div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1571212515416-fef01fc43637?auto=format&fit=crop&w=350&q=80" alt="Butter">
+                    <span class="delivery-time">10 MINS</span>
+                    <h3>Table Butter</h3>
+                    <p class="quantity">100 g</p>
+                    <div class="product-bottom"><span class="price">₹58</span><button class="add-button">ADD</button></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Snacks -->
+        <section class="section">
+            <div class="section-heading">
+                <h2>Snacks &amp; Munchies</h2>
+                <a href="#" class="see-all">See all</a>
+            </div>
+
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="potatochips.jpg" alt="Potato chips">
+                    <span class="delivery-time">10 MINS</span>
+                    <h3>Classic Potato Chips</h3>
+                    <p class="quantity">1 pack</p>
+                    <div class="product-bottom"><span class="price">₹20</span><button class="add-button">ADD</button></div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=350&q=80" alt="Cookies">
+                    <span class="delivery-time">10 MINS</span>
+                    <h3>Chocolate Cookies</h3>
+                    <p class="quantity">200 g</p>
+                    <div class="product-bottom"><span class="price">₹45</span><button class="add-button">ADD</button></div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=350&q=80" alt="Chocolate brownie">
+                    <span class="delivery-time">10 MINS</span>
+                    <h3>Chocolate Brownies</h3>
+                    <p class="quantity">2 pieces</p>
+                    <div class="product-bottom"><span class="price">₹75</span><button class="add-button">ADD</button></div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1581798459219-318e76aecc7b?auto=format&fit=crop&w=350&q=80" alt="Chocolate">
+                    <span class="delivery-time">10 MINS</span>
+                    <h3>Chocolate Bar</h3>
+                    <p class="quantity">1 piece</p>
+                    <div class="product-bottom"><span class="price">₹40</span><button class="add-button">ADD</button></div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1566478989037-eec170784d0b?auto=format&fit=crop&w=350&q=80" alt="Potato snacks">
+                    <span class="delivery-time">10 MINS</span>
+                    <h3>Masala Snacks</h3>
+                    <p class="quantity">200 g</p>
+                    <div class="product-bottom"><span class="price">₹35</span><button class="add-button">ADD</button></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fruits and vegetables -->
+        <section class="section">
+            <div class="section-heading">
+                <h2>Fresh Fruits &amp; Vegetables</h2>
+                <a href="#" class="see-all">See all</a>
+            </div>
+
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?auto=format&fit=crop&w=350&q=80" alt="Apples">
+                    <span class="delivery-time">10 MINS</span>
+                    <h3>Fresh Apples</h3>
+                    <p class="quantity">500 g</p>
+                    <div class="product-bottom"><span class="price">₹99</span><button class="add-button">ADD</button></div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?auto=format&fit=crop&w=350&q=80" alt="Bananas">
+                    <span class="delivery-time">10 MINS</span>
+                    <h3>Bananas</h3>
+                    <p class="quantity">6 pieces</p>
+                    <div class="product-bottom"><span class="price">₹45</span><button class="add-button">ADD</button></div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1546094096-0df4bcaaa337?auto=format&fit=crop&w=350&q=80" alt="Tomatoes">
+                    <span class="delivery-time">10 MINS</span>
+                    <h3>Fresh Tomatoes</h3>
+                    <p class="quantity">500 g</p>
+                    <div class="product-bottom"><span class="price">₹30</span><button class="add-button">ADD</button></div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1582515073490-39981397c445?auto=format&fit=crop&w=350&q=80" alt="Potatoes">
+                    <span class="delivery-time">10 MINS</span>
+                    <h3>Potatoes</h3>
+                    <p class="quantity">1 kg</p>
+                    <div class="product-bottom"><span class="price">₹35</span><button class="add-button">ADD</button></div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1591073113125-e46713c829ed?auto=format&fit=crop&w=350&q=80" alt="Oranges">
+                    <span class="delivery-time">10 MINS</span>
+                    <h3>Sweet Oranges</h3>
+                    <p class="quantity">500 g</p>
+                    <div class="product-bottom"><span class="price">₹65</span><button class="add-button">ADD</button></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <a href="#" class="logo">blinkit</a>
+                <p style="margin-top: 10px; color: #666666; font-size: 13px;">
+                    Groceries delivered in minutes.
+                </p>
+            </div>
+
+            <div class="footer-column">
+                <h3>Useful Links</h3>
+                <a href="#">About</a>
+                <a href="#">Careers</a>
+                <a href="#">Blog</a>
+                <a href="#">Press</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Categories</h3>
+                <a href="#">Vegetables &amp; Fruits</a>
+                <a href="#">Dairy &amp; Breakfast</a>
+                <a href="#">Snacks &amp; Munchies</a>
+                <a href="#">Cold Drinks</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Help &amp; Support</h3>
+                <a href="#">FAQs</a>
+                <a href="#">Contact Us</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+            </div>
+        </div>
+
+        <p class="footer-note">
+            This is a student mini-project made with HTML and CSS for educational purposes. It is not affiliated with Blinkit. Product prices are sample values. Images load from external websites, so an internet connection is required.
+        </p>
+    </footer>
+
+</body>
+
+</html>
